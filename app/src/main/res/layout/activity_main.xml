@@ -5,8 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -23,41 +23,43 @@
         android:layout_height="0dp"
         android:layout_weight="0.60">
 
+
         <TableRow
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.30">
 
+
             <Button
                 android:id="@+id/boton_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="C" />
-
+                android:text="C"
+                android:textSize="25sp" />
 
 
             <Button
                 android:id="@+id/pendiente"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="pdt" />
+                android:text="pdt"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_borrar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="CA" />
+                android:text="CA"
+                android:textSize="25sp" />
 
             <Button
 
                 android:id="@+id/boton_dividir"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="/" />
+                android:text="/"
+                android:textSize="25sp" />
 
         </TableRow>
 
@@ -72,26 +74,29 @@
                 android:id="@+id/boton_siete"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="7" />
+                android:text="7"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_ocho"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="8" />
+                android:text="8"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_nueve"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="9" />
+                android:text="9"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_multipilcar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="X" />
+                android:text="X"
+                android:textSize="25sp" />
 
 
         </TableRow>
@@ -107,27 +112,30 @@
                 android:id="@+id/boton_cuatro"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="4" />
+                android:text="4"
+                android:textSize="25sp" />
 
 
             <Button
                 android:id="@+id/boton_cinco"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="5" />
+                android:text="5"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_seis"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="6" />
+                android:text="6"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_suma"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="+" />
+                android:text="+"
+                android:textSize="25sp" />
 
 
         </TableRow>
@@ -143,27 +151,31 @@
                 android:id="@+id/boton_uno"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="1" />
+                android:text="1"
+                android:textSize="25sp" />
 
 
             <Button
                 android:id="@+id/boton_dos"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="2" />
+                android:text="2"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_tres"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="3" />
+                android:text="3"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_resta"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="-" />
+                android:text="-"
+                android:textSize="25sp" />
+            <!-- ESTILO DE BOTONES style="?android:attr/buttonBarButtonStyle"-->
 
 
         </TableRow>
@@ -178,28 +190,30 @@
                 android:id="@+id/boton_historia"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Hist" />
+                android:text="Hist"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_cero"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="0" />
+                android:text="0"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/boton_porcentaje"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="%" />
+                android:text="%"
+                android:textSize="25sp" />
 
 
             <Button
                 android:id="@+id/boton_igual"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:text="=" />
+                android:text="="
+                android:textSize="25sp" />
 
 
         </TableRow>
