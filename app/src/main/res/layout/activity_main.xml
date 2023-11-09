@@ -2,25 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.35"
+        android:layout_weight="0.40"
         android:gravity="end"
         android:text="0"
-        android:textSize="100sp" />
+        android:textSize="60sp" />
 
 
     <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.60">
 
-        <TableRow>
+
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.30">
+
 
             <Button
                 android:id="@+id/boton_siete"
@@ -40,16 +49,20 @@
                 android:layout_height="wrap_content"
                 android:text="9" />
 
+            <Button
+                android:id="@+id/boton_multipilcar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X" />
+
 
         </TableRow>
 
-    </TableLayout>
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.30">
 
 
             <Button
@@ -71,15 +84,20 @@
                 android:layout_height="wrap_content"
                 android:text="6" />
 
+            <Button
+                android:id="@+id/boton_suma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+" />
+
+
         </TableRow>
 
-    </TableLayout>
+        <TableRow
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TableRow>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.30">
 
 
             <Button
@@ -101,7 +119,50 @@
                 android:layout_height="wrap_content"
                 android:text="3" />
 
+            <Button
+                android:id="@+id/boton_resta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.30">
+
+
+            <Button
+                android:id="@+id/boton_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C" />
+
+
+            <Button
+                android:id="@+id/boton_cero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/boton_dividir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/" />
+
+
+            <Button
+                android:id="@+id/boton_igual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="=" />
+
+
+        </TableRow>
+
 
     </TableLayout>
 
