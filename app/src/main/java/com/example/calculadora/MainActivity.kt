@@ -8,7 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.calculadora.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() , OnClickListener{ //IMPLEMENTAMOS INTERFACE OnClickListener y creamos el metodo mas abajo.
+
+//IMPLEMENTAMOS INTERFACE OnClickListener y creamos el metodo mas abajo.
+
+class MainActivity : AppCompatActivity(), OnClickListener {
 
     /*
     CREAMOS LAS VARIABLES
@@ -39,7 +42,14 @@ class MainActivity : AppCompatActivity() , OnClickListener{ //IMPLEMENTAMOS INTE
 //        }
 
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-
+    private var textoPantalla: String = ""
+//    private lateinit var op1: Int
+//    private lateinit var op2: Int
+//    private lateinit var suma: Int
+//    private lateinit var division: Double
+//    private lateinit var mult: Int
+//    private lateinit var porcentaje: Int
+//    private lateinit var resta: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,18 +67,80 @@ class MainActivity : AppCompatActivity() , OnClickListener{ //IMPLEMENTAMOS INTE
 
         //Si usamos binding. nos apareceran todos los elementos que hemos creado en la parte grafica.
 
-        binding.botonBorrar.setOnClickListener(this)//Con this, llamamos a la funcion de la interface.
-        binding.botonCero
-        binding.botonDividir
 
+        binding.botonSuma.setOnClickListener(this)
+        binding.botonResta.setOnClickListener(this)
+        binding.botonDividir.setOnClickListener(this)
+        binding.botonMultipilcar.setOnClickListener(this)
+        binding.botonPorcentaje.setOnClickListener(this)
+        binding.botonReset.setOnClickListener(this)
+        binding.botonBorrar.setOnClickListener(this)
+        binding.botonIgual.setOnClickListener(this)
+        binding.botonCero.setOnClickListener(this)
+        binding.botonUno.setOnClickListener(this)
+        binding.botonDos.setOnClickListener(this)
+        binding.botonTres.setOnClickListener(this)
+        binding.botonCuatro.setOnClickListener(this)
+        binding.botonCinco.setOnClickListener(this)
+        binding.botonSeis.setOnClickListener(this)
+        binding.botonSiete.setOnClickListener(this)
+        binding.botonOcho.setOnClickListener(this)
+        binding.botonNueve.setOnClickListener(this)
+        binding.botonHistorial.setOnClickListener(this)
 
-        //
+        //Con this, llamamos a la funcion de la interface.//
 
     }
 
 
     //Metodo de la Interface OnClickListener.
     override fun onClick(v: View?) {
+
+        when (v?.id) {
+
+            binding.botonCero.id -> {
+                binding.textoPantalla.text="0"
+            }
+
+            binding.botonUno.id -> {
+                binding.textoPantalla.text="1"
+            }
+
+            binding.botonDos.id -> {
+                binding.textoPantalla.text="2"
+            }
+
+            binding.botonTres.id -> {
+                binding.textoPantalla.text="3"
+            }
+
+            binding.botonCuatro.id -> {
+                binding.textoPantalla.text="4"
+            }
+
+            binding.botonCinco.id -> {
+                binding.textoPantalla.text="5"
+            }
+
+            binding.botonSeis.id -> {
+                binding.textoPantalla.text="6"
+            }
+
+            binding.botonSiete.id -> {
+                binding.textoPantalla.text="7"
+            }
+
+            binding.botonCinco.id -> {
+                binding.textoPantalla.text="8"
+            }
+
+            binding.botonNueve.id -> {
+                binding.textoPantalla.text="9"
+            }
+        }
+
+//        binding.textoPantalla.text=binding.botonCero.toString()
+
 
     }
 }
