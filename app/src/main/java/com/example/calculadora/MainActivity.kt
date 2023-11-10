@@ -21,14 +21,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
 
-
+    //    private var textoSecudario = ""//Probar a meter los valores introducidos en esta pantalla y mostrar el resultado antes del igual como en la calculadora samsung.
     private var pantalla = ""
-//    private var textoSecudario = ""//Probar a meter los valores introducidos en esta pantalla y mostrar el resultado antes del igual como en la calculadora samsung.
     private var op1 = 0
     private var op2 = 0
-    private var suma: Int = 0
-
     private var resultado = 0
+    private var operacion: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,113 +77,120 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         when (v?.id) {
 
-            binding.botonCero.id -> {
-                pantalla += "0"
-            }
+            binding.botonCero.id -> pantalla += "0"
+            binding.botonUno.id -> pantalla += "1"
+            binding.botonDos.id -> pantalla += "2"
+            binding.botonTres.id -> pantalla += "3"
+            binding.botonCuatro.id -> pantalla += "4"
+            binding.botonCinco.id -> pantalla += "5"
+            binding.botonSeis.id -> pantalla += "6"
+            binding.botonSiete.id -> pantalla += "7"
+            binding.botonOcho.id -> pantalla += "8"
+            binding.botonNueve.id -> pantalla += "9"
+            binding.botonReset.id -> pantalla = ""
 
-            binding.botonUno.id -> {
-                pantalla += "1"
-            }
-
-            binding.botonDos.id -> {
-                pantalla += "2"
-            }
-
-            binding.botonTres.id -> {
-                pantalla += "3"
-            }
-
-            binding.botonCuatro.id -> {
-                pantalla += "4"
-            }
-
-            binding.botonCinco.id -> {
-                pantalla += "5"
-            }
-
-            binding.botonSeis.id -> {
-                pantalla += "6"
-            }
-
-            binding.botonSiete.id -> {
-                pantalla += "7"
-            }
-
-            binding.botonOcho.id -> {
-                pantalla += "8"
-            }
-
-            binding.botonNueve.id -> {
-                pantalla += "9"
-            }
-
-            binding.botonReset.id -> {
-                pantalla = ""
-
-            }
+            //EVENTOS EN BOTONES DE OPERACION//
 
             binding.botonSuma.id -> {
-
                 op1 = pantalla.toInt()
-                pantalla = "+"
-
+                pantalla = ""
+                operacion = "suma"
             }
 
             binding.botonResta.id -> {
-
                 op1 = pantalla.toInt()
-                pantalla = "-"
-
+                pantalla = ""
+                operacion = "resta"
             }
 
             binding.botonMultipilcar.id -> {
-
                 op1 = pantalla.toInt()
-                pantalla = "X"
-
+                pantalla = ""
+                operacion = "multiplicacion"
             }
 
             binding.botonDividir.id -> {
-
                 op1 = pantalla.toInt()
-                pantalla = "/"
-
-
+                pantalla = ""
+                operacion = "division"
             }
 
             binding.botonPorcentaje.id -> {
 
                 op1 = pantalla.toInt()
-                pantalla = "%"
-
+                pantalla = ""
+                operacion = "porcentaje"
             }
 
             binding.botonIgual.id -> {
 
-                op2 = pantalla.toInt()
+                when (operacion) {
 
-                suma = op1 + op2
+                    "suma" -> {
+                        op2 = pantalla.toInt()
+                        resultado = op1 + op2
+                        pantalla = resultado.toString()
+                        operacion = ""
+                    }
 
-                pantalla = suma.toString()
+                    "resta" -> {
+
+                        op2 = pantalla.toInt()
+                        resultado = op1 - op2
+                        pantalla = resultado.toString()
+                        operacion = ""
+                    }
+
+                    "multiplicacion" -> {
+
+                        op2 = pantalla.toInt()
+                        resultado = op1 * op2
+                        pantalla = resultado.toString()
+                        operacion = ""
+
+                    }
+
+                    "division" -> {
+
+                        op2 = pantalla.toInt() //
+                        //Evitar la division por cero.
+                        if (op2 != 0) {
+                            resultado = op1 / op2
+                            pantalla = resultado.toString()
+                            operacion = ""
+                        } else {
+                            pantalla = "Error"
+                        }
+
+
+                    }
+                        //REVISAR OPERACION. DECIDIR SI USARLA AL PULSAR IGUAL O CUANDO PULSE EL BOTON PORCENTAJE COMO EN LA CALCULADORA.
+                    "porcentaje" -> {
+
+                        op2 = pantalla.toInt() //
+                        resultado = (op2 / op1) * 100
+                        pantalla = resultado.toString()
+                        operacion = ""
+                    }
+
+
+                }
+
 
             }
 
-            //Al pulsar el botn suma:
-            //Primer boton pulsado es se guarda en op1
-            //
-//op1 = textoAcumulado.toInt()
-
-            //Pulso suma -> textoAcumulado pasa a vacio
-            //Siguiente valor pulsado se guarda en op2
-            // textoAcumulado
-
-            //Usar savedOnInstance??
-
-
         }
-
         binding.textoPantalla.text = pantalla
     }
 
-
 }
+
+
+
+
+
+
+
+
+
+
