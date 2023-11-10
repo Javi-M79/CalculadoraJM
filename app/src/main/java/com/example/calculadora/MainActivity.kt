@@ -13,28 +13,6 @@ import com.example.calculadora.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    /*
-    CREAMOS LAS VARIABLES
-    private lateinit var texto_pantalla: TextView
-    private lateinit var boton_reset: Button
-    private lateinit var boton_borrar: Button
-    private lateinit var boton_dividir: Button
-    private lateinit var boton_siete: Button
-    private lateinit var boton_ocho: Button
-    private lateinit var boton_nueve: Button
-    private lateinit var boton_multipilcar: Button
-    private lateinit var boton_cuatro: Button
-    private lateinit var boton_cinco: Button
-    private lateinit var boton_seis: Button
-    private lateinit var boton_suma: Button
-    private lateinit var boton_uno: Button
-    private lateinit var boton_dos: Button
-    private lateinit var boton_tres: Button
-    private lateinit var boton_resta: Button
-    private lateinit var boton_historial: Button
-    private lateinit var boton_cero: Button
-    private lateinit var boton_igual: Button*/
-
 
 //    Vincular el fichero grafico. Implementar ViewBinding en build.gradle(module:app) con este codigo antes de las dependencias
 //     viewBinding {
@@ -42,24 +20,27 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 //        }
 
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-    private var textoPantalla: String = ""
-//    private lateinit var op1: Int
-//    private lateinit var op2: Int
-//    private lateinit var suma: Int
-//    private lateinit var division: Double
-//    private lateinit var mult: Int
-//    private lateinit var porcentaje: Int
-//    private lateinit var resta: Int
+
+
+    private var pantalla = ""
+//    private var textoSecudario = ""//Probar a meter los valores introducidos en esta pantalla y mostrar el resultado antes del igual como en la calculadora samsung.
+    private var op1 = 0
+    private var op2 = 0
+    private var suma: Int = 0
+
+    private var resultado = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         //Cogemos el fichero y lo rellenamos con el metodo "inflate"
         binding =
             ActivityMainBinding.inflate(layoutInflater)//Nombre de la clase + metodo = (variable LayoutInflater)
         setContentView(binding.root)
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
-        -  Crear variable para el ActivityMain de tipo ActivityMainBinding
+        -  Crear variable para el binding de tipo ActivityMainBinding
         - Rellenar fichero
         -  Usar la clase serContentView con la raiz de la variable Binding como parametro. Con root le estamos diciendo que mire lo mas arriba posible. Normalmente desde el linearLayout, etc..
 
@@ -91,7 +72,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         //Con this, llamamos a la funcion de la interface.//
 
     }
-
+//Crear el saveInstace para guardar datos del historial y para la pantalla en horizontal.
 
     //Metodo de la Interface OnClickListener.
     override fun onClick(v: View?) {
@@ -99,48 +80,112 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (v?.id) {
 
             binding.botonCero.id -> {
-                binding.textoPantalla.text="0"
+                pantalla += "0"
             }
 
             binding.botonUno.id -> {
-                binding.textoPantalla.text="1"
+                pantalla += "1"
             }
 
             binding.botonDos.id -> {
-                binding.textoPantalla.text="2"
+                pantalla += "2"
             }
 
             binding.botonTres.id -> {
-                binding.textoPantalla.text="3"
+                pantalla += "3"
             }
 
             binding.botonCuatro.id -> {
-                binding.textoPantalla.text="4"
+                pantalla += "4"
             }
 
             binding.botonCinco.id -> {
-                binding.textoPantalla.text="5"
+                pantalla += "5"
             }
 
             binding.botonSeis.id -> {
-                binding.textoPantalla.text="6"
+                pantalla += "6"
             }
 
             binding.botonSiete.id -> {
-                binding.textoPantalla.text="7"
+                pantalla += "7"
             }
 
-            binding.botonCinco.id -> {
-                binding.textoPantalla.text="8"
+            binding.botonOcho.id -> {
+                pantalla += "8"
             }
 
             binding.botonNueve.id -> {
-                binding.textoPantalla.text="9"
+                pantalla += "9"
             }
+
+            binding.botonReset.id -> {
+                pantalla = ""
+
+            }
+
+            binding.botonSuma.id -> {
+
+                op1 = pantalla.toInt()
+                pantalla = "+"
+
+            }
+
+            binding.botonResta.id -> {
+
+                op1 = pantalla.toInt()
+                pantalla = "-"
+
+            }
+
+            binding.botonMultipilcar.id -> {
+
+                op1 = pantalla.toInt()
+                pantalla = "X"
+
+            }
+
+            binding.botonDividir.id -> {
+
+                op1 = pantalla.toInt()
+                pantalla = "/"
+
+
+            }
+
+            binding.botonPorcentaje.id -> {
+
+                op1 = pantalla.toInt()
+                pantalla = "%"
+
+            }
+
+            binding.botonIgual.id -> {
+
+                op2 = pantalla.toInt()
+
+                suma = op1 + op2
+
+                pantalla = suma.toString()
+
+            }
+
+            //Al pulsar el botn suma:
+            //Primer boton pulsado es se guarda en op1
+            //
+//op1 = textoAcumulado.toInt()
+
+            //Pulso suma -> textoAcumulado pasa a vacio
+            //Siguiente valor pulsado se guarda en op2
+            // textoAcumulado
+
+            //Usar savedOnInstance??
+
+
         }
 
-//        binding.textoPantalla.text=binding.botonCero.toString()
-
-
+        binding.textoPantalla.text = pantalla
     }
+
+
 }

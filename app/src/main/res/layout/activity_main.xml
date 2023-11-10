@@ -10,12 +10,22 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/texto_pantalla"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.40"
         android:gravity="end"
         android:text="0"
         android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/texto_secundario"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:gravity="end"
+        android:text="probando"
+        android:textSize="20sp" />
 
 
     <TableLayout
@@ -187,7 +197,7 @@
 
 
             <Button
-                android:id="@+id/boton_historia"
+                android:id="@+id/boton_historial"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Hist"
