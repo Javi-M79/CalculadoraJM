@@ -21,8 +21,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }*/
 
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-    private var pantallaSecudario = ""
+    private var pantallaSecudaria = ""
     private var pantalla = ""
+    private var historial = ""
     private var op1 = 0
     private var op2 = 0
     private var resultado =
@@ -30,10 +31,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var operacion: String = ""
 
 
+    //RECUPERAR DATOS
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //Cogemos el fichero y lo rellenamos con el metodo "inflate"//
+        resultado = savedInstanceState?.getInt("resultado") ?: 0
 
         binding =
             ActivityMainBinding.inflate(layoutInflater)//Nombre de la clase + metodo = (variable LayoutInflater)
@@ -46,8 +48,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         -  Usar la clase serContentView con la raiz de la variable Binding como parametro. Con root le estamos diciendo que mire lo mas arriba posible del archivo grafico. Normalmente desde el linearLayout, etc..
 
         */
-
-        //Si usamos binding.nombredelelemento en el xml, nos apareceran todos los elementos que hemos creado en la parte grafica.
 
 
         binding.botonSuma.setOnClickListener(this)
@@ -70,10 +70,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.botonNueve.setOnClickListener(this)
         binding.botonHistorial.setOnClickListener(this)
 
-        //Con this, llamamos a la funcion de la interface.//
-
     }
-//Crear el saveInstace para guardar datos del historial y para la pantalla en horizontal.
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("resultado", resultado)
+        binding.textoPantalla.text = resultado.toString()
+    }
 
     //Metodo de la Interface OnClickListener.
     override fun onClick(v: View?) {
@@ -94,56 +98,61 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonSiete.id -> pantalla += "7"
             binding.botonOcho.id -> pantalla += "8"
             binding.botonNueve.id -> pantalla += "9"
-            binding.botonReset.id -> pantalla = ""
+            binding.botonReset.id -> {
+                pantalla = ""; pantallaSecudaria = ""
+            }
 
             //EVENTOS EN BOTONES DE OPERACION//
 
             binding.botonSuma.id -> {
 
-                if (pantalla.equals("")) {
+                if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
-                    op1 = pantalla.toInt()
+
+                    op1 += pantalla.toInt()
+                    historial = pantalla
                     pantalla = ""
-                    pantallaSecudario = "+"
+                    pantallaSecudaria = "+"; historial
                     operacion = "suma"
+
                 }
             }
 
             binding.botonResta.id -> {
-                if (pantalla.equals("")) {
+                if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudario = "-"
+                    pantallaSecudaria = "-"
                     operacion = "resta"
                 }
             }
 
             binding.botonMultipilcar.id -> {
-                if (pantalla.equals("")) {
+                if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
 
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudario = "x"
+                    pantallaSecudaria = "x"
                     operacion = "multiplicacion"
                 }
             }
 
             binding.botonDividir.id -> {
-                if (pantalla.equals("")) {
+                if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudario = "/"
+                    pantallaSecudaria = "/"
                     operacion = "division"
                 }
             }
@@ -152,14 +161,63 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonPorcentaje.id -> {
 
-                if (pantalla.equals("")) {
+                if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
-                    op1 = pantalla.toInt()
-                    pantalla = ""
-                    pantallaSecudario = "%"
-                    operacion = "porcentaje"
+                    when (operacion) {
+
+                        "suma" -> {
+
+                            op2 = pantalla.toInt()
+                            resultado = op1 + (op1 * op2 / 100)
+                            pantalla = resultado.toString()
+                            operacion = ""
+
+
+                        }
+
+                        "resta" -> {
+
+                            op2 = pantalla.toInt()
+                            resultado = op1 - op2
+                            pantalla = resultado.toString()
+                            operacion = ""
+                        }
+
+                        "multiplicacion" -> {
+
+                            op2 = pantalla.toInt()
+                            resultado = op1 * op2
+                            pantalla = resultado.toString()
+                            operacion = ""
+
+                        }
+
+                        "division" -> {
+
+
+                            op2 = pantalla.toInt() //
+                            //Evitar la division por cero.
+                            if (op2 != 0) {
+                                resultado = op1 / op2
+                                pantalla = resultado.toString()
+                                operacion = ""
+
+
+                            } else {
+
+                                Toast.makeText(
+                                    this,
+                                    "Division por 0 no permitida",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+
+
+                        }
+                    }
                 }
             }
 
@@ -171,10 +229,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                         op2 = pantalla.toInt()
                         resultado = op1 + op2
+                        op1 = resultado
                         pantalla = resultado.toString()
                         operacion = ""
 
                     }
+
 
                     "resta" -> {
 
@@ -203,8 +263,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                             pantalla = resultado.toString()
                             operacion = ""
 
-                        } else {
-//
+                        } else {//
                             Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -228,8 +287,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         }
         binding.textoPantalla.text = pantalla
-        binding.textoSecundario.text = pantallaSecudario
+        binding.textoSecundario.text = pantallaSecudaria
     }
+
 
 }
 
