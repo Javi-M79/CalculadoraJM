@@ -87,6 +87,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         when (v?.id) {
 
+            //COMPORTAMIENTO DE BOTONES NUMERICOS//
+
             binding.botonCero.id -> {
                 if (botonPulsado) {
                     pantalla = "0"
@@ -179,25 +181,25 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 pantalla = ""; pantallaSecudaria = ""
             }
 
-            //EVENTOS EN BOTONES DE OPERACION//
+            //COMPORTAMIENTO BOTONES DE OPERACION//
 
             binding.botonSuma.id -> {
 
-                operaciones("+", "suma")
+                botonesOperacion("+", "suma")
 
             }
 
             binding.botonResta.id -> {
 
-                operaciones("-", "resta")
+                botonesOperacion("-", "resta")
             }
 
             binding.botonMultipilcar.id -> {
-                operaciones("x", "multiplicacion")
+                botonesOperacion("x", "multiplicacion")
             }
 
             binding.botonDividir.id -> {
-                operaciones("/", "division")
+                botonesOperacion("/", "division")
             }
             /*DECIDIR SU USO.
              SI MUESTRA SIMBOLO EN SECUNDARIA O MUESTRA EL RESULTADO DE LA OPERACION AL PULSARLO*/
@@ -349,7 +351,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.textoSecundario.text = pantallaSecudaria
     }
 
-    fun operaciones(simbolo: String, nombreOperacion: String) {
+    fun botonesOperacion(simbolo: String, nombreOperacion: String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
@@ -361,6 +363,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
 
     }
+
 
 
 }
