@@ -23,7 +23,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
     private var pantallaSecudaria = ""
     private var pantalla = ""
-    private var historial = ""
+    private var botonPulsado = false;
+
+    //    private var historial = ""
     private var op1 = 0
     private var op2 = 0
     private var resultado =
@@ -38,14 +40,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         resultado = savedInstanceState?.getInt("resultado") ?: 0
 
         binding =
-            ActivityMainBinding.inflate(layoutInflater)//Nombre de la clase + metodo = (variable LayoutInflater)
+            ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
         RESUMEN:
         -  Crear variable para el binding de tipo ActivityMainBinding: private lateinit var binding: ActivityMainBinding
         - Rellenar fichero: binding = ActivityMainBinding.inflate(layoutInflater)
-        -  Usar la clase serContentView con la raiz de la variable Binding como parametro. Con root le estamos diciendo que mire lo mas arriba posible del archivo grafico. Normalmente desde el linearLayout, etc..
+        -  Usar la clase setContentView con Binding como parametro. Con root le estamos diciendo que mire lo mas arriba posible del archivo grafico. Normalmente desde el linearLayout, etc..
 
         */
 
@@ -75,8 +77,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("resultado", resultado)
-        binding.textoPantalla.text = resultado.toString()
+
+
     }
 
     //Metodo de la Interface OnClickListener.
@@ -88,16 +90,82 @@ class MainActivity : AppCompatActivity(), OnClickListener {
       */
         when (v?.id) {
 
-            binding.botonCero.id -> pantalla += "0"
-            binding.botonUno.id -> pantalla += "1"
-            binding.botonDos.id -> pantalla += "2"
-            binding.botonTres.id -> pantalla += "3"
-            binding.botonCuatro.id -> pantalla += "4"
-            binding.botonCinco.id -> pantalla += "5"
-            binding.botonSeis.id -> pantalla += "6"
-            binding.botonSiete.id -> pantalla += "7"
-            binding.botonOcho.id -> pantalla += "8"
-            binding.botonNueve.id -> pantalla += "9"
+            binding.botonCero.id -> {
+                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                    pantalla = "0"
+                } else {
+                    pantalla += "0"
+                }
+            }
+
+            binding.botonUno.id -> {
+                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                    pantalla = "1"
+                } else {
+                    pantalla += "1"
+                }
+            }
+
+            binding.botonDos.id -> {
+                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                    pantalla = "2"
+                } else {
+                    pantalla += "2"
+                }
+            }
+
+
+            binding.botonTres.id -> {
+                if (botonPulsado) {
+                    pantalla = "3"
+
+                } else {
+                    pantalla += "3"
+                }
+            }
+
+            binding.botonCuatro.id ->{if(botonPulsado){
+                pantalla= "4"
+
+            } else {
+                pantalla += "4"
+            }
+            }
+            binding.botonCinco.id -> {if(botonPulsado){
+                pantalla= "5"
+
+            } else {
+                pantalla += "5"
+            }
+            }
+            binding.botonSeis.id -> {if(botonPulsado){
+                pantalla= "6"
+
+            } else {
+                pantalla += "6"
+            }
+            }
+            binding.botonSiete.id -> {if(botonPulsado){
+                pantalla= "7"
+
+            } else {
+                pantalla += "7"
+            }
+            }
+            binding.botonOcho.id -> {if(botonPulsado){
+                pantalla= "8"
+
+            } else {
+                pantalla += "8"
+            }
+            }
+            binding.botonNueve.id -> {if(botonPulsado){
+                pantalla= "9"
+
+            } else {
+                pantalla += "9"
+            }
+            }
             binding.botonReset.id -> {
                 pantalla = ""; pantallaSecudaria = ""
             }
@@ -111,10 +179,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
 
-                    op1 += pantalla.toInt()
-                    historial = pantalla
+                    op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudaria = "+"; historial
+                    pantallaSecudaria = "$op1+"
                     operacion = "suma"
 
                 }
@@ -127,7 +194,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 } else {
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudaria = "-"
+                    pantallaSecudaria = "$op1-"
                     operacion = "resta"
                 }
             }
@@ -140,7 +207,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudaria = "x"
+                    pantallaSecudaria = "$op1*"
                     operacion = "multiplicacion"
                 }
             }
@@ -152,7 +219,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 } else {
                     op1 = pantalla.toInt()
                     pantalla = ""
-                    pantallaSecudaria = "/"
+                    pantallaSecudaria = "$op1/"
                     operacion = "division"
                 }
             }
@@ -161,17 +228,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonPorcentaje.id -> {
 
+
                 if (pantalla.isEmpty()) {
 
                     Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
                 } else {
+
                     when (operacion) {
 
                         "suma" -> {
 
                             op2 = pantalla.toInt()
                             resultado = op1 + (op1 * op2 / 100)
-                            pantalla = resultado.toString()
+                            resultado.toString()
                             operacion = ""
 
 
@@ -223,15 +292,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonIgual.id -> {
 
+
                 when (operacion) {
 
                     "suma" -> {
 
+
                         op2 = pantalla.toInt()
+                        pantallaSecudaria = "$op1+$op2"
                         resultado = op1 + op2
                         op1 = resultado
                         pantalla = resultado.toString()
                         operacion = ""
+                        botonPulsado = true
 
                     }
 
@@ -239,32 +312,42 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     "resta" -> {
 
                         op2 = pantalla.toInt()
+                        pantallaSecudaria = "$op1-$op2"
                         resultado = op1 - op2
                         pantalla = resultado.toString()
                         operacion = ""
+                        botonPulsado = true
                     }
 
                     "multiplicacion" -> {
 
                         op2 = pantalla.toInt()
                         resultado = op1 * op2
+                        pantallaSecudaria = "$op1*$op2"
                         pantalla = resultado.toString()
                         operacion = ""
+                        botonPulsado = true
 
                     }
 
                     "division" -> {
 
 
-                        op2 = pantalla.toInt() //
+                        op2 = pantalla.toInt()
+                        pantallaSecudaria = "$op1/$op2"
                         //Evitar la division por cero.
                         if (op2 != 0) {
                             resultado = op1 / op2
                             pantalla = resultado.toString()
                             operacion = ""
+                            botonPulsado = true
 
                         } else {//
-                            Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                this,
+                                "Division por 0 no permitida",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                         }
 
@@ -286,6 +369,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
         }
+
         binding.textoPantalla.text = pantalla
         binding.textoSecundario.text = pantallaSecudaria
     }
