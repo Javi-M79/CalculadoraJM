@@ -24,24 +24,25 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var pantallaSecudaria = ""
     private var pantalla = ""
     private var botonPulsado = false;
-
-    //    private var historial = ""
     private var op1 = 0
     private var op2 = 0
-    private var resultado =
-        0 //Probar con String para ver si se puede resetear al pulsar un numero despues de mostrarlo.
+    private var resultado = 0
     private var operacion: String = ""
+    private lateinit var ultimaOperacion: Any
 
 
     //RECUPERAR DATOS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        resultado = savedInstanceState?.getInt("resultado") ?: 0
-
         binding =
             ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        pantalla = savedInstanceState?.getString("pantalla") ?: ""
+        pantallaSecudaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
+        binding.textoPantalla.text = pantalla.toString()
+        binding.textoSecundario.text = pantallaSecudaria.toString()
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
         RESUMEN:
@@ -74,12 +75,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
-
+        outState.putString("pantalla", pantalla)
+        outState.putString("pantallaSecundaria", pantallaSecudaria)
     }
+
 
     override fun onClick(v: View?) {
 
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (v?.id) {
 
             binding.botonCero.id -> {
-                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                if (botonPulsado) {
                     pantalla = "0"
                 } else {
                     pantalla += "0"
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             binding.botonUno.id -> {
-                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                if (botonPulsado) {
                     pantalla = "1"
                 } else {
                     pantalla += "1"
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             binding.botonDos.id -> {
-                if (botonPulsado) {// APLICAR A TODOS LOS BOTONES!!!
+                if (botonPulsado) {
                     pantalla = "2"
                 } else {
                     pantalla += "2"
@@ -120,48 +121,60 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }
             }
 
-            binding.botonCuatro.id ->{if(botonPulsado){
-                pantalla= "4"
+            binding.botonCuatro.id -> {
+                if (botonPulsado) {
+                    pantalla = "4"
 
-            } else {
-                pantalla += "4"
+                } else {
+                    pantalla += "4"
+                }
             }
-            }
-            binding.botonCinco.id -> {if(botonPulsado){
-                pantalla= "5"
 
-            } else {
-                pantalla += "5"
-            }
-            }
-            binding.botonSeis.id -> {if(botonPulsado){
-                pantalla= "6"
+            binding.botonCinco.id -> {
+                if (botonPulsado) {
+                    pantalla = "5"
 
-            } else {
-                pantalla += "6"
+                } else {
+                    pantalla += "5"
+                }
             }
-            }
-            binding.botonSiete.id -> {if(botonPulsado){
-                pantalla= "7"
 
-            } else {
-                pantalla += "7"
-            }
-            }
-            binding.botonOcho.id -> {if(botonPulsado){
-                pantalla= "8"
+            binding.botonSeis.id -> {
+                if (botonPulsado) {
+                    pantalla = "6"
 
-            } else {
-                pantalla += "8"
+                } else {
+                    pantalla += "6"
+                }
             }
-            }
-            binding.botonNueve.id -> {if(botonPulsado){
-                pantalla= "9"
 
-            } else {
-                pantalla += "9"
+            binding.botonSiete.id -> {
+                if (botonPulsado) {
+                    pantalla = "7"
+
+                } else {
+                    pantalla += "7"
+                }
             }
+
+            binding.botonOcho.id -> {
+                if (botonPulsado) {
+                    pantalla = "8"
+
+                } else {
+                    pantalla += "8"
+                }
             }
+
+            binding.botonNueve.id -> {
+                if (botonPulsado) {
+                    pantalla = "9"
+
+                } else {
+                    pantalla += "9"
+                }
+            }
+
             binding.botonReset.id -> {
                 pantalla = ""; pantallaSecudaria = ""
             }
@@ -170,54 +183,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonSuma.id -> {
 
-                if (pantalla.isEmpty()) {
+                operaciones("+", "suma")
 
-                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-                } else {
-
-                    op1 = pantalla.toInt()
-                    pantalla = ""
-                    pantallaSecudaria = "$op1+"
-                    operacion = "suma"
-
-                }
             }
 
             binding.botonResta.id -> {
-                if (pantalla.isEmpty()) {
 
-                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-                } else {
-                    op1 = pantalla.toInt()
-                    pantalla = ""
-                    pantallaSecudaria = "$op1-"
-                    operacion = "resta"
-                }
+                operaciones("-", "resta")
             }
 
             binding.botonMultipilcar.id -> {
-                if (pantalla.isEmpty()) {
-
-                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-                } else {
-
-                    op1 = pantalla.toInt()
-                    pantalla = ""
-                    pantallaSecudaria = "$op1*"
-                    operacion = "multiplicacion"
-                }
+                operaciones("x", "multiplicacion")
             }
 
             binding.botonDividir.id -> {
-                if (pantalla.isEmpty()) {
-
-                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-                } else {
-                    op1 = pantalla.toInt()
-                    pantalla = ""
-                    pantallaSecudaria = "$op1/"
-                    operacion = "division"
-                }
+                operaciones("/", "division")
             }
             /*DECIDIR SU USO.
              SI MUESTRA SIMBOLO EN SECUNDARIA O MUESTRA EL RESULTADO DE LA OPERACION AL PULSARLO*/
@@ -293,7 +273,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                     "suma" -> {
 
-
                         op2 = pantalla.toInt()
                         pantallaSecudaria = "$op1+$op2"
                         resultado = op1 + op2
@@ -319,7 +298,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                         op2 = pantalla.toInt()
                         resultado = op1 * op2
-                        pantallaSecudaria = "$op1*$op2"
+                        pantallaSecudaria = "$op1 x $op2"
                         pantalla = resultado.toString()
                         operacion = ""
                         botonPulsado = true
@@ -370,8 +349,24 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.textoSecundario.text = pantallaSecudaria
     }
 
+    fun operaciones(simbolo: String, nombreOperacion: String) {
+        if (pantalla.isEmpty()) {
+            Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
+        } else {
+            op1 = pantalla.toInt()
+            pantalla = ""
+            pantallaSecudaria = "$op1$simbolo"
+            operacion = nombreOperacion
+
+        }
+
+    }
+
 
 }
+
+
+
 
 
 
