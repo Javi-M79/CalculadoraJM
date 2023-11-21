@@ -52,27 +52,56 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         */
 
 
-        binding.botonSuma.setOnClickListener(this)
-        binding.botonResta.setOnClickListener(this)
-        binding.botonDividir.setOnClickListener(this)
-        binding.botonMultipilcar.setOnClickListener(this)
-        binding.botonPorcentaje.setOnClickListener(this)
-        binding.botonReset.setOnClickListener(this)
-        binding.botonBorrar.setOnClickListener(this)
-        binding.botonIgual.setOnClickListener(this)
-        binding.botonCero.setOnClickListener(this)
-        binding.botonUno.setOnClickListener(this)
-        binding.botonDos.setOnClickListener(this)
-        binding.botonTres.setOnClickListener(this)
-        binding.botonCuatro.setOnClickListener(this)
-        binding.botonCinco.setOnClickListener(this)
-        binding.botonSeis.setOnClickListener(this)
-        binding.botonSiete.setOnClickListener(this)
-        binding.botonOcho.setOnClickListener(this)
-        binding.botonNueve.setOnClickListener(this)
-        binding.botonHistorial.setOnClickListener(this)
+        //Crear Array de los botones y recorrerlos con un foreach para asignarles el metodo setOnclickListener(this)
+
+
+        val botones = arrayOf(
+            binding.botonSuma,
+            binding.botonResta,
+            binding.botonDividir,
+            binding.botonMultipilcar,
+            binding.botonPorcentaje,
+            binding.botonReset,
+            binding.botonIgual,
+            binding.botonPorcentaje,
+            binding.botonCero,
+            binding.botonUno,
+            binding.botonDos,
+            binding.botonTres,
+            binding.botonCuatro,
+            binding.botonCinco,
+            binding.botonSeis,
+            binding.botonSiete,
+            binding.botonOcho,
+            binding.botonNueve
+        )
+
+
+        botones.forEach { it.setOnClickListener(this) }
+
+
+//        binding.botonSuma.setOnClickListener(this)
+//        binding.botonResta.setOnClickListener(this)
+//        binding.botonDividir.setOnClickListener(this)
+//        binding.botonMultipilcar.setOnClickListener(this)
+//        binding.botonPorcentaje.setOnClickListener(this)
+//        binding.botonReset.setOnClickListener(this)
+////        binding.botonBorrar.setOnClickListener(this)
+//        binding.botonIgual.setOnClickListener(this)
+//        binding.botonCero.setOnClickListener(this)
+//        binding.botonUno.setOnClickListener(this)
+//        binding.botonDos.setOnClickListener(this)
+//        binding.botonTres.setOnClickListener(this)
+//        binding.botonCuatro.setOnClickListener(this)
+//        binding.botonCinco.setOnClickListener(this)
+//        binding.botonSeis.setOnClickListener(this)
+//        binding.botonSiete.setOnClickListener(this)
+//        binding.botonOcho.setOnClickListener(this)
+//        binding.botonNueve.setOnClickListener(this)
+////        binding.botonHistorial.setOnClickListener(this)
 
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -87,6 +116,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (v?.id) {
 
             //COMPORTAMIENTO DE BOTONES NUMERICOS// PROBAR COGIENDO EL .TEXT DE TODOS
+
+//CREAR UN FOREACH PARA QUE COJA EL TEXTO DE CADA BOTON?? USAR LA VARIABLE botonesnumericos??
+
 
             binding.botonCero.id -> {
                 if (botonPulsado) {
@@ -124,10 +156,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonCuatro.id -> {
                 if (botonPulsado) {
-                    pantalla = "4"
+                    pantalla = binding.botonCuatro.text.toString()
 
                 } else {
-                    pantalla += "4"
+                    pantalla += binding.botonCuatro.text.toString()
                 }
             }
 
@@ -185,25 +217,25 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonSuma.id -> {
 
                 botonesOperacion("+")
-                operacion= "suma"
+                operacion = "suma"
 
             }
 
             binding.botonResta.id -> {
 
                 botonesOperacion("-")
-                operacion= "resta"
+                operacion = "resta"
 
             }
 
             binding.botonMultipilcar.id -> {
                 botonesOperacion("x")
-                operacion= "multiplicacion"
+                operacion = "multiplicacion"
             }
 
             binding.botonDividir.id -> {
-                botonesOperacion("/")
-                operacion= "division"
+                botonesOperacion("÷")//alt + 246 simbolo division.
+                operacion = "division"
             }
             /*DECIDIR SU USO.
              SI MUESTRA SIMBOLO EN SECUNDARIA O MUESTRA EL RESULTADO DE LA OPERACION AL PULSARLO*/
@@ -297,36 +329,39 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-    fun accion(operar:  String) {
+    fun accion(operacion: String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
+
             op2 = pantalla.toInt()
+            pantallaSecudaria += pantalla
             botonPulsado = true
+
             when (operacion) {
 
                 "suma" -> {
                     pantalla = (op1 + op2).toString()
-                    operacion = ""
+                    this.operacion = ""
 
                 }
 
                 "resta" -> {
                     pantalla = (op1 - op2).toString()
-                    operacion = ""
+                    this.operacion = ""
 
                 }
 
                 "multiplicacion" -> {
                     pantalla = (op1 * op2).toString()
-                    operacion = ""
+                    this.operacion = ""
 
                 }
 
                 "division" -> {
                     if (op2 != 0) {
-                        pantalla = (op1 / op2).toString()
-                        operacion = ""
+                        pantalla = (op1 / op2.toDouble()).toDouble().toString()
+                        this.operacion = ""
 
 
                     } else {//
@@ -345,6 +380,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
 
+//    fun botonPorcentaje()
 }
 
 
