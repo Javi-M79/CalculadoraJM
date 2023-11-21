@@ -268,80 +268,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }
             }
 
-            binding.botonIgual.id -> {
+            binding.botonIgual.id-> {
 
-
-                when (operacion) {
-
-                    "suma" -> {
-
-                        op2 = pantalla.toInt()
-                        pantallaSecudaria = "$op1+$op2"
-                        resultado = op1 + op2
-                        op1 = resultado
-                        pantalla = resultado.toString()
-                        operacion = ""
-                        botonPulsado = true
-
-                    }
-
-
-                    "resta" -> {
-
-                        op2 = pantalla.toInt()
-                        pantallaSecudaria = "$op1-$op2"
-                        resultado = op1 - op2
-                        pantalla = resultado.toString()
-                        operacion = ""
-                        botonPulsado = true
-                    }
-
-                    "multiplicacion" -> {
-
-                        op2 = pantalla.toInt()
-                        resultado = op1 * op2
-                        pantallaSecudaria = "$op1 x $op2"
-                        pantalla = resultado.toString()
-                        operacion = ""
-                        botonPulsado = true
-
-                    }
-
-                    "division" -> {
-
-
-                        op2 = pantalla.toInt()
-                        pantallaSecudaria = "$op1/$op2"
-                        //Evitar la division por cero.
-                        if (op2 != 0) {
-                            resultado = op1 / op2
-                            pantalla = resultado.toString()
-                            operacion = ""
-                            botonPulsado = true
-
-                        } else {//
-                            Toast.makeText(
-                                this,
-                                "Division por 0 no permitida",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-
-
-                    }
-                    //REVISAR OPERACION. DECIDIR SI USARLA AL PULSAR IGUAL O CUANDO PULSE EL BOTON PORCENTAJE COMO EN LA CALCULADORA.
-                    "porcentaje" -> {
-
-                        op2 = pantalla.toInt() //
-                        resultado = (op2 / op1) * 100
-                        pantalla = resultado.toString()
-                        operacion = ""
-                    }
-
-
-                }
-
+                accion(operacion)
 
             }
 
@@ -351,19 +280,64 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.textoSecundario.text = pantallaSecudaria
     }
 
-    fun botonesOperacion(simbolo: String, nombreOperacion: String) {
+    fun botonesOperacion(simbolo: String, operacion: String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
             op1 = pantalla.toInt()
             pantalla = ""
             pantallaSecudaria = "$op1$simbolo"
-            operacion = nombreOperacion
+
 
         }
 
     }
 
+    fun accion(operacionString: String) {
+        if (pantalla.isEmpty()) {
+            Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
+        } else {
+            op2 = pantalla.toInt()
+
+            when (operacion) {
+
+                "suma" -> {
+                    pantalla = (op1 + op2).toString()
+                    operacion = ""
+                    botonPulsado = true
+                }
+
+                "resta" -> {
+                    pantalla = (op1 - op2).toString()
+                    operacion = ""
+                    botonPulsado = true
+                }
+
+                "multiplicacion" -> {
+                    pantalla = (op1 * op2).toString()
+                    operacion = ""
+                    botonPulsado = true
+                }
+
+                "division" -> {
+                    if (op2 != 0) {
+                        pantalla = (op1 / op2).toString()
+                        operacion = ""
+                        botonPulsado = true
+
+                    } else {//
+                        Toast.makeText(this,"Division por 0 no permitida",Toast.LENGTH_SHORT).show()
+                    }
+
+
+                }
+
+            }
+
+        }
+
+
+    }
 
 
 }
