@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var botonPulsado = false;
     private var op1 = 0
     private var op2 = 0
-    private var resultado = 0
     private var operacion: String = ""
     private lateinit var ultimaOperacion: Any
 
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         when (v?.id) {
 
-            //COMPORTAMIENTO DE BOTONES NUMERICOS//
+            //COMPORTAMIENTO DE BOTONES NUMERICOS// PROBAR COGIENDO EL .TEXT DE TODOS
 
             binding.botonCero.id -> {
                 if (botonPulsado) {
@@ -185,90 +184,95 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonSuma.id -> {
 
-                botonesOperacion("+", "suma")
+                botonesOperacion("+")
+                operacion= "suma"
 
             }
 
             binding.botonResta.id -> {
 
-                botonesOperacion("-", "resta")
+                botonesOperacion("-")
+                operacion= "resta"
+
             }
 
             binding.botonMultipilcar.id -> {
-                botonesOperacion("x", "multiplicacion")
+                botonesOperacion("x")
+                operacion= "multiplicacion"
             }
 
             binding.botonDividir.id -> {
-                botonesOperacion("/", "division")
+                botonesOperacion("/")
+                operacion= "division"
             }
             /*DECIDIR SU USO.
              SI MUESTRA SIMBOLO EN SECUNDARIA O MUESTRA EL RESULTADO DE LA OPERACION AL PULSARLO*/
 
-            binding.botonPorcentaje.id -> {
+//            binding.botonPorcentaje.id -> {
+//
+//
+//                if (pantalla.isEmpty()) {
+//
+//                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
+//                } else {
+//
+//                    when (operacion) {
+//
+//                        "suma" -> {
+//
+//                            op2 = pantalla.toInt()
+//                            pantalla = op1 + (op1 * op2 / 100)
+//                            resultado.toString()
+//                            operacion = ""
+//
+//
+//                        }
+//
+//                        "resta" -> {
+//
+//                            op2 = pantalla.toInt()
+//                            resultado = op1 - op2
+//                            pantalla = resultado.toString()
+//                            operacion = ""
+//                        }
+//
+//                        "multiplicacion" -> {
+//
+//                            op2 = pantalla.toInt()
+//                            resultado = op1 * op2
+//                            pantalla = resultado.toString()
+//                            operacion = ""
+//
+//                        }
+//
+//                        "division" -> {
+//
+//
+//                            op2 = pantalla.toInt() //
+//                            //Evitar la division por cero.
+//                            if (op2 != 0) {
+//                                resultado = op1 / op2
+//                                pantalla = resultado.toString()
+//                                operacion = ""
+//
+//
+//                            } else {
+//
+//                                Toast.makeText(
+//                                    this,
+//                                    "Division por 0 no permitida",
+//                                    Toast.LENGTH_SHORT
+//                                )
+//                                    .show()
+//                            }
+//
+//
+//                        }
+//                    }
+//                }
+//            }
 
-
-                if (pantalla.isEmpty()) {
-
-                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-                } else {
-
-                    when (operacion) {
-
-                        "suma" -> {
-
-                            op2 = pantalla.toInt()
-                            resultado = op1 + (op1 * op2 / 100)
-                            resultado.toString()
-                            operacion = ""
-
-
-                        }
-
-                        "resta" -> {
-
-                            op2 = pantalla.toInt()
-                            resultado = op1 - op2
-                            pantalla = resultado.toString()
-                            operacion = ""
-                        }
-
-                        "multiplicacion" -> {
-
-                            op2 = pantalla.toInt()
-                            resultado = op1 * op2
-                            pantalla = resultado.toString()
-                            operacion = ""
-
-                        }
-
-                        "division" -> {
-
-
-                            op2 = pantalla.toInt() //
-                            //Evitar la division por cero.
-                            if (op2 != 0) {
-                                resultado = op1 / op2
-                                pantalla = resultado.toString()
-                                operacion = ""
-
-
-                            } else {
-
-                                Toast.makeText(
-                                    this,
-                                    "Division por 0 no permitida",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }
-
-
-                        }
-                    }
-                }
-            }
-
-            binding.botonIgual.id-> {
+            binding.botonIgual.id -> {
 
                 accion(operacion)
 
@@ -280,7 +284,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.textoSecundario.text = pantallaSecudaria
     }
 
-    fun botonesOperacion(simbolo: String, operacion: String) {
+    fun botonesOperacion(simbolo: String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
@@ -293,40 +297,41 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-    fun accion(operacionString: String) {
+    fun accion(operar:  String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
             op2 = pantalla.toInt()
-
+            botonPulsado = true
             when (operacion) {
 
                 "suma" -> {
                     pantalla = (op1 + op2).toString()
                     operacion = ""
-                    botonPulsado = true
+
                 }
 
                 "resta" -> {
                     pantalla = (op1 - op2).toString()
                     operacion = ""
-                    botonPulsado = true
+
                 }
 
                 "multiplicacion" -> {
                     pantalla = (op1 * op2).toString()
                     operacion = ""
-                    botonPulsado = true
+
                 }
 
                 "division" -> {
                     if (op2 != 0) {
                         pantalla = (op1 / op2).toString()
                         operacion = ""
-                        botonPulsado = true
+
 
                     } else {//
-                        Toast.makeText(this,"Division por 0 no permitida",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
+                            .show()
                     }
 
 
