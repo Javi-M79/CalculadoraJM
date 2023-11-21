@@ -81,13 +81,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-    //Metodo de la Interface OnClickListener.
     override fun onClick(v: View?) {
 
-        /*IMPLEMENTAR RESETEO AL MOSTRAR RESULTADO PARA EMPEZAR DE NUEVO Y NO CONCATERNAR NUEVOS VALORES AL RESULTADO.
-          IF ELSE?
-          Trabajar con al variable resultado. Resetearla?
-      */
+
         when (v?.id) {
 
             binding.botonCero.id -> {
