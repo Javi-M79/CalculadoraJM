@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }*/
 
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-    private var pantallaSecudaria = ""
+    private var pantallaSecundaria = ""
     private var pantalla = ""
     private var botonPulsado = false;
     private var op1 = 0
@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(binding.root)
 
         pantalla = savedInstanceState?.getString("pantalla") ?: ""
-        pantallaSecudaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
+        pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
         binding.textoPantalla.text = pantalla.toString()
-        binding.textoSecundario.text = pantallaSecudaria.toString()
+        binding.textoSecundario.text = pantallaSecundaria.toString()
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
         RESUMEN:
@@ -80,77 +80,60 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         botones.forEach { it.setOnClickListener(this) }
 
 
-//        binding.botonSuma.setOnClickListener(this)
-//        binding.botonResta.setOnClickListener(this)
-//        binding.botonDividir.setOnClickListener(this)
-//        binding.botonMultipilcar.setOnClickListener(this)
-//        binding.botonPorcentaje.setOnClickListener(this)
-//        binding.botonReset.setOnClickListener(this)
-////        binding.botonBorrar.setOnClickListener(this)
-//        binding.botonIgual.setOnClickListener(this)
-//        binding.botonCero.setOnClickListener(this)
-//        binding.botonUno.setOnClickListener(this)
-//        binding.botonDos.setOnClickListener(this)
-//        binding.botonTres.setOnClickListener(this)
-//        binding.botonCuatro.setOnClickListener(this)
-//        binding.botonCinco.setOnClickListener(this)
-//        binding.botonSeis.setOnClickListener(this)
-//        binding.botonSiete.setOnClickListener(this)
-//        binding.botonOcho.setOnClickListener(this)
-//        binding.botonNueve.setOnClickListener(this)
-////        binding.botonHistorial.setOnClickListener(this)
-
     }
 
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("pantalla", pantalla)
-        outState.putString("pantallaSecundaria", pantallaSecudaria)
+        outState.putString(
+            "pantallaSecundaria",
+            pantallaSecundaria
+        )//No guarda bien el resultado. Comprobar.
     }
-
 
     override fun onClick(v: View?) {
 
-
         when (v?.id) {
+
 
             //COMPORTAMIENTO DE BOTONES NUMERICOS// PROBAR COGIENDO EL .TEXT DE TODOS
 
-//CREAR UN FOREACH PARA QUE COJA EL TEXTO DE CADA BOTON?? USAR LA VARIABLE botonesnumericos??
-
+//CREAR UN FOREACH PARA QUE COJA EL TEXTO DE CADA BOTON?? USAR LA VARIABLE botones??
 
             binding.botonCero.id -> {
                 if (botonPulsado) {
-                    pantalla = "0"
+                    pantalla = binding.botonCero.text.toString()
+
                 } else {
-                    pantalla += "0"
+                    pantalla += binding.botonCero.text.toString()
+
                 }
             }
 
             binding.botonUno.id -> {
                 if (botonPulsado) {
-                    pantalla = "1"
+                    pantalla = binding.botonUno.text.toString()
                 } else {
-                    pantalla += "1"
+                    pantalla += binding.botonUno.text.toString()
                 }
             }
 
             binding.botonDos.id -> {
                 if (botonPulsado) {
-                    pantalla = "2"
+                    pantalla = binding.botonDos.text.toString()
                 } else {
-                    pantalla += "2"
+                    pantalla += binding.botonDos.text.toString()
                 }
             }
 
 
             binding.botonTres.id -> {
                 if (botonPulsado) {
-                    pantalla = "3"
+                    pantalla = binding.botonTres.text.toString()
 
                 } else {
-                    pantalla += "3"
+                    pantalla += binding.botonTres.text.toString()
                 }
             }
 
@@ -165,51 +148,51 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonCinco.id -> {
                 if (botonPulsado) {
-                    pantalla = "5"
+                    pantalla = binding.botonCinco.text.toString()
 
                 } else {
-                    pantalla += "5"
+                    pantalla += binding.botonCinco.text.toString()
                 }
             }
 
             binding.botonSeis.id -> {
                 if (botonPulsado) {
-                    pantalla = "6"
+                    pantalla = binding.botonSeis.text.toString()
 
                 } else {
-                    pantalla += "6"
+                    pantalla += binding.botonSeis.text.toString()
                 }
             }
 
             binding.botonSiete.id -> {
                 if (botonPulsado) {
-                    pantalla = "7"
+                    pantalla = binding.botonSiete.text.toString()
 
                 } else {
-                    pantalla += "7"
+                    pantalla += binding.botonSiete.text.toString()
                 }
             }
 
             binding.botonOcho.id -> {
                 if (botonPulsado) {
-                    pantalla = "8"
+                    pantalla = binding.botonOcho.text.toString()
 
                 } else {
-                    pantalla += "8"
+                    pantalla += binding.botonOcho.text.toString()
                 }
             }
 
             binding.botonNueve.id -> {
                 if (botonPulsado) {
-                    pantalla = "9"
+                    pantalla = binding.botonNueve.text.toString()
 
                 } else {
-                    pantalla += "9"
+                    pantalla += binding.botonNueve.text.toString()
                 }
             }
 
             binding.botonReset.id -> {
-                pantalla = ""; pantallaSecudaria = ""
+                pantalla = ""; pantallaSecundaria = ""
             }
 
             //COMPORTAMIENTO BOTONES DE OPERACION//
@@ -218,18 +201,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 botonesOperacion("+")
                 operacion = "suma"
-
             }
 
             binding.botonResta.id -> {
 
                 botonesOperacion("-")
                 operacion = "resta"
-
             }
 
             binding.botonMultipilcar.id -> {
-                botonesOperacion("x")
+                botonesOperacion("×")
                 operacion = "multiplicacion"
             }
 
@@ -237,72 +218,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 botonesOperacion("÷")//alt + 246 simbolo division.
                 operacion = "division"
             }
-            /*DECIDIR SU USO.
-             SI MUESTRA SIMBOLO EN SECUNDARIA O MUESTRA EL RESULTADO DE LA OPERACION AL PULSARLO*/
 
-//            binding.botonPorcentaje.id -> {
-//
-//
-//                if (pantalla.isEmpty()) {
-//
-//                    Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
-//                } else {
-//
-//                    when (operacion) {
-//
-//                        "suma" -> {
-//
-//                            op2 = pantalla.toInt()
-//                            pantalla = op1 + (op1 * op2 / 100)
-//                            resultado.toString()
-//                            operacion = ""
-//
-//
-//                        }
-//
-//                        "resta" -> {
-//
-//                            op2 = pantalla.toInt()
-//                            resultado = op1 - op2
-//                            pantalla = resultado.toString()
-//                            operacion = ""
-//                        }
-//
-//                        "multiplicacion" -> {
-//
-//                            op2 = pantalla.toInt()
-//                            resultado = op1 * op2
-//                            pantalla = resultado.toString()
-//                            operacion = ""
-//
-//                        }
-//
-//                        "division" -> {
-//
-//
-//                            op2 = pantalla.toInt() //
-//                            //Evitar la division por cero.
-//                            if (op2 != 0) {
-//                                resultado = op1 / op2
-//                                pantalla = resultado.toString()
-//                                operacion = ""
-//
-//
-//                            } else {
-//
-//                                Toast.makeText(
-//                                    this,
-//                                    "Division por 0 no permitida",
-//                                    Toast.LENGTH_SHORT
-//                                )
-//                                    .show()
-//                            }
-//
-//
-//                        }
-//                    }
-//                }
-//            }
+            binding.botonPorcentaje.id -> {
+
+                operacion = "porcentaje"
+
+            }
 
             binding.botonIgual.id -> {
 
@@ -313,20 +234,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
 
         binding.textoPantalla.text = pantalla
-        binding.textoSecundario.text = pantallaSecudaria
+        binding.textoSecundario.text = pantallaSecundaria
     }
 
     fun botonesOperacion(simbolo: String) {
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
-            op1 = pantalla.toInt()
+            op1 = pantalla.toDouble().toInt()
             pantalla = ""
-            pantallaSecudaria = "$op1$simbolo"
-
-
+            pantallaSecundaria = "$op1$simbolo"
         }
-
     }
 
     fun accion(operacion: String) {
@@ -335,7 +253,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         } else {
 
             op2 = pantalla.toInt()
-            pantallaSecudaria += pantalla
+            pantallaSecundaria += pantalla
             botonPulsado = true
 
             when (operacion) {
@@ -343,13 +261,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 "suma" -> {
                     pantalla = (op1 + op2).toString()
                     this.operacion = ""
-
                 }
 
                 "resta" -> {
                     pantalla = (op1 - op2).toString()
                     this.operacion = ""
-
                 }
 
                 "multiplicacion" -> {
@@ -360,9 +276,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 "division" -> {
                     if (op2 != 0) {
-                        pantalla = (op1 / op2.toDouble()).toDouble().toString()
+                        pantalla = (op1 / op2.toDouble()).toString()
                         this.operacion = ""
-
 
                     } else {//
                         Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
@@ -372,16 +287,65 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 }
 
+                "porcentaje" -> {
+                    botonPorcentaje()
+                }
+
             }
 
         }
 
+    }
+
+    fun botonPorcentaje() {
+
+        if (pantalla.isEmpty()) {
+            Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
+        } else {
+            val porcentaje = pantalla.toDouble()
+            pantallaSecundaria += pantalla
+            botonPulsado = true
+
+            when (operacion) {
+                "suma" -> {
+                    pantalla = { op1 + (op1 * porcentaje / 100) }.toString()
+                    operacion = ""
+                }
+
+                "resta" -> {
+                    pantalla = { op1 - (op1 * porcentaje / 100) }.toString()
+                    operacion = ""
+                }
+
+                "multiplicacion" -> {
+                    pantalla = { op1 * (porcentaje / 100)}.toString()
+                    operacion = ""
+                }
+
+                "division" -> {
+                    if (porcentaje != 0.0) {
+                        pantalla = {op1 / (porcentaje / 100)}.toString()
+                        operacion = ""
+                    } else {
+                        Toast.makeText(this, "División por 0 no permitida", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
 
     }
 
 
-//    fun botonPorcentaje()
 }
+
+
+
+
+
+
+
+
 
 
 
