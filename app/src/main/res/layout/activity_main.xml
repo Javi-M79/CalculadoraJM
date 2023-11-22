@@ -39,8 +39,8 @@
         <Button
 
             android:id="@+id/boton_dividir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="÷"
             android:textSize="30sp" />
 
@@ -86,7 +86,7 @@
             android:id="@+id/boton_multipilcar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="x"
+            android:text="×"
             android:textSize="25sp" />
 
 
