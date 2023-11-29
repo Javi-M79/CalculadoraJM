@@ -15,21 +15,16 @@ import com.example.calculadora.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), OnClickListener {
 
 
-    /*    Vincular el fichero grafico. Implementar ViewBinding en build.gradle(module:app) con este codigo antes de las dependencias
-             viewBinding {
-                enable = true
-                }*/
-
     private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-    private var pantallaSecundaria = ""
-    private var pantalla = ""
+
+    private var pantalla = "0"
     private var botonPulsado = false;
     private var op1 = 0
     private var op2 = 0
     private var resultado = 0
     private var operacion: String = ""
 //    private lateinit var ultimaOperacion: Any
-
+//    private var pantallaSecundaria = ""
 
     //RECUPERAR DATOS
 
@@ -40,8 +35,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(binding.root)
 
         pantalla = savedInstanceState?.getString("pantalla") ?: ""
-        pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
-        binding.textoPantalla.text = pantalla.toString()
+//        pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
+//        binding.textoPantalla.text = pantalla
 //        binding.textoSecundario.text = pantallaSecundaria.toString()
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
@@ -70,6 +65,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonSiete,
             binding.botonOcho,
             binding.botonNueve
+
         )
 
 
@@ -198,7 +194,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
 
             binding.botonReset.id -> {
-                pantalla = ""; pantallaSecundaria = ""
+                pantalla = "0"
+                botonPulsado=true
             }
 
             //COMPORTAMIENTO BOTONES DE OPERACION//
@@ -250,52 +247,42 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
             op1 = pantalla.toDouble().toInt()
-            pantalla = ""
-            pantallaSecundaria = "$op1$simbolo"
+//            pantallaSecundaria = "$op1$simbolo"
+            botonPulsado=true
         }
     }
 
     fun accion(operacion: String) {
+
         if (pantalla.isEmpty()) {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
 
             op2 = pantalla.toInt()
-            pantallaSecundaria += pantalla
+//            pantallaSecundaria += pantalla
             botonPulsado = true
 
             when (operacion) {
 
                 "suma" -> {
-                    pantalla = (op1 + op2).toString()
-
+                    pantalla = (op1 + op2).toInt().toString()
                 }
 
-                "resta" -> {
-                    pantalla = (op1 - op2).toString()
+                "resta" ->{ pantalla = (op1 - op2).toString()}
 
-                }
-
-                "multiplicacion" -> {
-                    pantalla = (op1 * op2).toString()
-
-
-                }
+                "multiplicacion" -> {pantalla = (op1 * op2).toString()}
 
                 "division" -> {
                     if (op2 != 0) {
                         pantalla = (op1 / op2.toDouble()).toString()
-
-
                     } else {//
                         Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
 
-
             }
-
+            binding.textoPantalla.text = pantalla
         }
 
 
@@ -308,12 +295,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         when (operacion) {
             "suma" -> {
-                pantalla = { op1 + ((op1 * op2) / 100) }.toString()
+                resultado = op1 + ((op1 * op2) / 100)
             }
 
-            "resta" -> pantalla = { op1 - ((op1 * op2) / 100) }.toString()
-            "multiplicacion " -> pantalla = { op1 * ((op1 * op2) / 100) }.toString()
-            "division" -> pantalla = { op1 / ((op1 * op2) / 100) }.toString()
+            "resta" -> {
+                resultado = op1 - ((op1 * op2) / 100)
+            }
+
+            "multiplicacion " -> {
+                resultado = op1 * ((op1 * op2) / 100)
+            }
+
+            "division" -> {
+                resultado = op1 / ((op1 * op2) / 100)
+            }
 
         }
 
