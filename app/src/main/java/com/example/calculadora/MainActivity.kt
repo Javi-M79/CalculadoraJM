@@ -26,8 +26,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var botonPulsado = false;
     private var op1 = 0
     private var op2 = 0
+    private var resultado = 0
     private var operacion: String = ""
-    private lateinit var ultimaOperacion: Any
+//    private lateinit var ultimaOperacion: Any
 
 
     //RECUPERAR DATOS
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         pantalla = savedInstanceState?.getString("pantalla") ?: ""
         pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
         binding.textoPantalla.text = pantalla.toString()
-        binding.textoSecundario.text = pantallaSecundaria.toString()
+//        binding.textoSecundario.text = pantallaSecundaria.toString()
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
         RESUMEN:
@@ -51,19 +52,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         */
 
-
-        //Crear Array de los botones y recorrerlos con un foreach para asignarles el metodo setOnclickListener(this)
-
-
         val botones = arrayOf(
             binding.botonSuma,
             binding.botonResta,
             binding.botonDividir,
             binding.botonMultipilcar,
-            binding.botonPorcentaje,
+//            binding.botonPorcentaje,
             binding.botonReset,
             binding.botonIgual,
-            binding.botonPorcentaje,
             binding.botonCero,
             binding.botonUno,
             binding.botonDos,
@@ -86,10 +82,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("pantalla", pantalla)
-        outState.putString(
-            "pantallaSecundaria",
-            pantallaSecundaria
-        )//No guarda bien el resultado. Comprobar.
+//        outState.putString("pantallaSecundaria",pantallaSecundaria
+//        )//No guarda bien el resultado. Comprobar.
     }
 
     override fun onClick(v: View?) {
@@ -230,14 +224,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 botonesOperacion("÷")//alt + 246 simbolo division.
                 operacion = "division"
             }
-
-            binding.botonPorcentaje.id -> {
-
-                botonesOperacion("÷")
-                calculoPorcentaje(operacion)
-
-
-            }
+//
+////            binding.botonPorcentaje.id -> {
+////
+////                botonesOperacion("÷")
+////                calculoPorcentaje(operacion)
+////
+//
+//            }
 
             binding.botonIgual.id -> {
 
@@ -248,7 +242,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
 
         binding.textoPantalla.text = pantalla
-        binding.textoSecundario.text = pantallaSecundaria
+//        binding.textoSecundario.text = pantallaSecundaria
     }
 
     fun botonesOperacion(simbolo: String) {
@@ -313,7 +307,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         //ERROR JAVA LANG. SEGURAMENTE PORLA CONVERSION DE TIPOS.
 
         when (operacion) {
-            "suma" ->{ pantalla = { op1 + ((op1 * op2) / 100) }.toString()}
+            "suma" -> {
+                pantalla = { op1 + ((op1 * op2) / 100) }.toString()
+            }
+
             "resta" -> pantalla = { op1 - ((op1 * op2) / 100) }.toString()
             "multiplicacion " -> pantalla = { op1 * ((op1 * op2) / 100) }.toString()
             "division" -> pantalla = { op1 / ((op1 * op2) / 100) }.toString()
