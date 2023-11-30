@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.calculadora.databinding.ActivityMainBinding
+import kotlin.math.sqrt
 
 
 //IMPLEMENTAMOS INTERFACE OnClickListener y creamos el metodo mas abajo.
@@ -15,14 +16,17 @@ import com.example.calculadora.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), OnClickListener {
 
 
-    private lateinit var binding: ActivityMainBinding //En esta variable creamos el fichero grafico de la mainActivity que es de tipo ActivityMainBinding
-
+    private lateinit var binding: ActivityMainBinding
     private var pantalla = "0"
     private var botonPulsado = false;
     private var op1 = 0
     private var op2 = 0
-    private var resultado = 0
+    private var porcentaje = 0.0
     private var operacion: String = ""
+    private var resultado = 0
+//    private var ultimoOp = 0
+
+
 //    private lateinit var ultimaOperacion: Any
 //    private var pantallaSecundaria = ""
 
@@ -35,8 +39,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(binding.root)
 
         pantalla = savedInstanceState?.getString("pantalla") ?: ""
+        binding.textoPantalla.text = pantalla
 //        pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
-//        binding.textoPantalla.text = pantalla
+
 //        binding.textoSecundario.text = pantallaSecundaria.toString()
 
         /*TODO EL CODIGO DE ARRIBA SE DEBE REPETIR POR NORMA
@@ -52,7 +57,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonResta,
             binding.botonDividir,
             binding.botonMultipilcar,
-//            binding.botonPorcentaje,
+            binding.botonPorcentaje,
+            binding.botonRaizcuadrada,
+            binding.botonMasMenos,
+            binding.botonCuadrado,
             binding.botonReset,
             binding.botonIgual,
             binding.botonCero,
@@ -69,7 +77,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         )
 
 
-        botones.forEach { it.setOnClickListener(this) }
+        botones.forEach { it?.setOnClickListener(this) }
 
 
     }
@@ -221,19 +229,38 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 botonesOperacion("÷")//alt + 246 simbolo division.
                 operacion = "division"
             }
-//
-////            binding.botonPorcentaje.id -> {
-////
-////                botonesOperacion("÷")
-////                calculoPorcentaje(operacion)
-////
-//
-//            }
+
+            binding.botonPorcentaje?.id -> {
+
+                calculoPorcentaje(operacion)
+
+            }
 
             binding.botonIgual.id -> {
 
                 accion(operacion)
 
+
+            }
+
+            binding.botonRaizcuadrada?.id->{
+              botonesOperacion("√")
+                pantalla = sqrt(op1.toDouble()).toString()
+                binding.textoPantalla.text = pantalla
+                operacion = "raizCuadrada"
+            }
+            binding.botonMasMenos?.id->{
+                op1 = pantalla.toInt()
+                pantalla = (-op1).toString()
+                binding.textoPantalla.text = pantalla
+                botonPulsado=true
+            }
+
+            binding.botonCuadrado?.id->{
+                op1 = pantalla.toDouble().toInt()
+                pantalla = (op1*op1).toString()
+                binding.textoPantalla.text = pantalla
+                botonPulsado=true
             }
 
         }
@@ -243,7 +270,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     fun botonesOperacion(simbolo: String) {
-        if (pantalla.isEmpty()) {
+        if (pantalla == "0") {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
             op1 = pantalla.toDouble().toInt()
@@ -252,21 +279,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
+
     fun accion(operacion: String) {
 
-        if (pantalla.isEmpty()) {
+        if (pantalla == "0") {
             Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
         } else {
 
             op2 = pantalla.toInt()
 //            pantallaSecundaria += pantalla
-            botonPulsado = true
-            op1=op2
+
 
             when (operacion) {
 
                 "suma" -> {
-                    pantalla = (op1 + op2).toInt().toString()
+                    pantalla = (op1 + op2).toString()
                 }
 
                 "resta" -> {
@@ -276,6 +303,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 "multiplicacion" -> {
                     pantalla = (op1 * op2).toString()
                 }
+                "raizCuadrada"->{
+
+                    pantalla = sqrt(op1.toDouble()).toString()
+                }
 
                 "division" -> {
                     if (op2 != 0) {
@@ -284,6 +315,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                         Toast.makeText(this, "Division por 0 no permitida", Toast.LENGTH_SHORT)
                             .show()
                     }
+
                 }
 
             }
@@ -296,31 +328,39 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     fun calculoPorcentaje(operacion: String) {
 
-        //ERROR JAVA LANG. SEGURAMENTE PORLA CONVERSION DE TIPOS.
 
-        when (operacion) {
-            "suma" -> {
-                resultado = op1 + ((op1 * op2) / 100)
+        if (pantalla == "0") {
+            Toast.makeText(this, "Accion no permitida", Toast.LENGTH_SHORT).show()
+        } else {
+
+            op2 = pantalla.toInt()
+            porcentaje = ((op1 * op2.toDouble() / 100))
+
+            when (operacion) {
+
+                "suma" -> {
+
+                    pantalla = (op1 + porcentaje).toString()
+                }
+
+                "resta" -> {
+                    pantalla = (op1 - porcentaje).toString()
+                }
+
+                "multiplicacion" -> {
+                    pantalla = porcentaje.toString()
+                }
+
+
             }
 
-            "resta" -> {
-                resultado = op1 - ((op1 * op2) / 100)
-            }
 
-            "multiplicacion " -> {
-                resultado = op1 * ((op1 * op2) / 100)
-            }
-
-            "division" -> {
-                resultado = op1 / ((op1 * op2) / 100)
-            }
+            binding.textoPantalla.text = pantalla
 
         }
 
 
     }
-
-
 }
 
 

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
+
     tools:context=".MainActivity">
 
 
@@ -25,14 +27,20 @@
 
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
+            android:padding="25sp"
             android:id="@+id/boton_siete"
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:layout_height="match_parent"
             android:text="7"
+
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_ocho"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -41,6 +49,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_nueve"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -49,11 +59,13 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_tertiary"
             android:id="@+id/boton_multipilcar"
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:layout_height="match_parent"
             android:text="×"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:textSize="25sp" />
 
     </LinearLayout>
@@ -65,6 +77,8 @@
         android:layout_weight="0.25">
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_cuatro"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -74,6 +88,8 @@
 
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_cinco"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -82,6 +98,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_seis"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -90,6 +108,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_suma"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -107,6 +127,8 @@
 
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_uno"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -116,6 +138,8 @@
 
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_dos"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -124,6 +148,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_tres"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -132,6 +158,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_resta"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -150,6 +178,8 @@
 
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_reset"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -158,6 +188,8 @@
             android:textSize="25sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_cero"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -166,7 +198,8 @@
             android:textSize="25sp" />
 
         <Button
-
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_dividir"
             android:layout_width="0dp"
             android:layout_weight="0.25"
@@ -175,6 +208,8 @@
             android:textSize="30sp" />
 
         <Button
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:textColor="@color/md_theme_dark_onPrimary"
             android:id="@+id/boton_igual"
             android:layout_width="0dp"
             android:layout_weight="0.25"
