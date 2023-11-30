@@ -17,18 +17,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
 
     private lateinit var binding: ActivityMainBinding
-    private var pantalla = "0"
-    private var botonPulsado = false;
+    private var pantalla: String = "0"
+    private var botonPulsado = true;
     private var op1 = 0
     private var op2 = 0
     private var porcentaje = 0.0
     private var operacion: String = ""
+    /*
     private var resultado = 0
-//    private var ultimoOp = 0
-//    private lateinit var ultimaOperacion: Any
-//    private var pantallaSecundaria = ""
-
-    //RECUPERAR DATOS
+    private var ultimoOp = 0
+    private lateinit var ultimaOperacion: Any
+    private var pantallaSecundaria = ""
+    RECUPERAR DATOS
+    */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +37,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        pantalla = savedInstanceState?.getString("pantalla") ?: ""
+        pantalla = savedInstanceState?.getString("pantalla") ?: "0"
         binding.textoPantalla.text = pantalla
+
+
 //        pantallaSecundaria = savedInstanceState?.getString("pantallaSecudaria") ?: ""
 
 //        binding.textoSecundario.text = pantallaSecundaria.toString()
@@ -84,8 +87,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("pantalla", pantalla)
-//        outState.putString("pantallaSecundaria",pantallaSecundaria
-//        )//No guarda bien el resultado. Comprobar.
+//        outState.putString("pantallaSecundaria",pantallaSecundaria)
     }
 
     override fun onClick(v: View?) {
@@ -101,7 +103,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonCero.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonCero.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
                 } else {
                     pantalla += binding.botonCero.text.toString()
 
@@ -111,7 +113,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonUno.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonUno.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
                 } else {
                     pantalla += binding.botonUno.text.toString()
                 }
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonDos.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonDos.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
                 } else {
                     pantalla += binding.botonDos.text.toString()
                 }
@@ -130,7 +132,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonTres.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonTres.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonTres.text.toString()
@@ -140,7 +142,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonCuatro.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonCuatro.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonCuatro.text.toString()
@@ -150,7 +152,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonCinco.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonCinco.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonCinco.text.toString()
@@ -160,7 +162,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonSeis.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonSeis.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonSeis.text.toString()
@@ -170,7 +172,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonSiete.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonSiete.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonSiete.text.toString()
@@ -180,7 +182,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonOcho.id -> {
                 if (botonPulsado) {
                     pantalla = binding.botonOcho.text.toString()
-                    botonPulsado = false
+                    botonPulsado = false;
 
                 } else {
                     pantalla += binding.botonOcho.text.toString()
@@ -200,7 +202,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonReset.id -> {
                 pantalla = "0"
-                botonPulsado = true
+                botonPulsado = true;
             }
 
             //COMPORTAMIENTO BOTONES DE OPERACION//
@@ -249,14 +251,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             binding.botonMasMenos?.id -> {
-                op1 = pantalla.toInt()
+                op1 = pantalla.toDouble().toInt()
                 pantalla = (-op1).toString()
                 binding.textoPantalla.text = pantalla
                 botonPulsado = true
             }
 
             binding.botonCuadrado?.id -> {
-                op1 = pantalla.toInt()
+                op1 = pantalla.toDouble().toInt()
                 pantalla = (op1 * op1).toString()
                 binding.textoPantalla.text = pantalla
                 botonPulsado = true
@@ -287,6 +289,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             op2 = pantalla.toInt()
 //            pantallaSecundaria += pantalla
+            botonPulsado = true
 
 
             when (operacion) {
