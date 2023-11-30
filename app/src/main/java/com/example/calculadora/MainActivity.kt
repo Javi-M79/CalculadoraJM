@@ -241,24 +241,25 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             }
 
-            binding.botonRaizcuadrada?.id->{
-              botonesOperacion("√")
+            binding.botonRaizcuadrada?.id -> {
+                botonesOperacion("√")
                 pantalla = sqrt(op1.toDouble()).toString()
                 binding.textoPantalla.text = pantalla
                 operacion = "raizCuadrada"
             }
-            binding.botonMasMenos?.id->{
+
+            binding.botonMasMenos?.id -> {
                 op1 = pantalla.toInt()
                 pantalla = (-op1).toString()
                 binding.textoPantalla.text = pantalla
-                botonPulsado=true
+                botonPulsado = true
             }
 
-            binding.botonCuadrado?.id->{
+            binding.botonCuadrado?.id -> {
                 op1 = pantalla.toInt()
-                pantalla = (op1*op1).toString()
+                pantalla = (op1 * op1).toString()
                 binding.textoPantalla.text = pantalla
-                botonPulsado=true
+                botonPulsado = true
             }
 
         }
@@ -301,7 +302,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 "multiplicacion" -> {
                     pantalla = (op1 * op2).toString()
                 }
-                "raizCuadrada"->{
+
+                "raizCuadrada" -> {
 
                     pantalla = sqrt(op1.toDouble()).toString()
                 }
