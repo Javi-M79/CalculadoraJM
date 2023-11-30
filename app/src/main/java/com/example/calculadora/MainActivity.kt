@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var operacion: String = ""
     private var resultado = 0
 //    private var ultimoOp = 0
-
-
 //    private lateinit var ultimaOperacion: Any
 //    private var pantallaSecundaria = ""
 
@@ -257,7 +255,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             binding.botonCuadrado?.id->{
-                op1 = pantalla.toDouble().toInt()
+                op1 = pantalla.toInt()
                 pantalla = (op1*op1).toString()
                 binding.textoPantalla.text = pantalla
                 botonPulsado=true
