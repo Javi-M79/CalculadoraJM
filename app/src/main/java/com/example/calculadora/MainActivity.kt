@@ -96,7 +96,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 if (botonPulsado) {
                     pantalla = binding.botonCero.text.toString()
                     botonPulsado = false
-
                 } else {
                     pantalla += binding.botonCero.text.toString()
 
@@ -195,7 +194,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             binding.botonReset.id -> {
                 pantalla = "0"
-                botonPulsado=true
+                botonPulsado = true
             }
 
             //COMPORTAMIENTO BOTONES DE OPERACION//
@@ -204,6 +203,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 botonesOperacion("+")
                 operacion = "suma"
+
             }
 
             binding.botonResta.id -> {
@@ -248,7 +248,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         } else {
             op1 = pantalla.toDouble().toInt()
 //            pantallaSecundaria = "$op1$simbolo"
-            botonPulsado=true
+            botonPulsado = true
         }
     }
 
@@ -261,6 +261,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             op2 = pantalla.toInt()
 //            pantallaSecundaria += pantalla
             botonPulsado = true
+            op1=op2
 
             when (operacion) {
 
@@ -268,9 +269,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     pantalla = (op1 + op2).toInt().toString()
                 }
 
-                "resta" ->{ pantalla = (op1 - op2).toString()}
+                "resta" -> {
+                    pantalla = (op1 - op2).toString()
+                }
 
-                "multiplicacion" -> {pantalla = (op1 * op2).toString()}
+                "multiplicacion" -> {
+                    pantalla = (op1 * op2).toString()
+                }
 
                 "division" -> {
                     if (op2 != 0) {
