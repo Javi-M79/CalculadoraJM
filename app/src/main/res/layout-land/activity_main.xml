@@ -88,6 +88,7 @@
 
         <Button
             android:id="@+id/boton_raizcuadrada"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -99,6 +100,7 @@
 
         <Button
             android:id="@+id/boton_cuatro"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -110,6 +112,7 @@
 
         <Button
             android:id="@+id/boton_cinco"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -120,6 +123,7 @@
 
         <Button
             android:id="@+id/boton_seis"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -130,6 +134,7 @@
 
         <Button
             android:id="@+id/boton_suma"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -148,6 +153,7 @@
 
         <Button
             android:id="@+id/boton_mas_menos"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -158,6 +164,7 @@
 
         <Button
             android:id="@+id/boton_uno"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -169,6 +176,7 @@
 
         <Button
             android:id="@+id/boton_dos"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -179,6 +187,7 @@
 
         <Button
             android:id="@+id/boton_tres"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -189,6 +198,7 @@
 
         <Button
             android:id="@+id/boton_resta"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -208,6 +218,7 @@
 
         <Button
             android:id="@+id/boton_cuadrado"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -218,15 +229,18 @@
 
         <Button
             android:id="@+id/boton_reset"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:backgroundTint="#79747E"
+            android:backgroundTint="@color/md_theme_dark_tertiaryContainer"
             android:text="C"
+            android:textColor="@color/material_dynamic_neutral80"
             android:textSize="25sp" />
 
         <Button
             android:id="@+id/boton_cero"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -238,6 +252,7 @@
         <Button
 
             android:id="@+id/boton_dividir"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
@@ -248,6 +263,7 @@
 
         <Button
             android:id="@+id/boton_igual"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
